@@ -22,6 +22,13 @@ whitespace drift, indentation drift, with re-indentation of new lines at the loo
 nearest-to-the-stated-line, SEARCH/REPLACE blocks, V4A sections with anchored chunks and a cursor, JSON edits with
 exact string matching, and all-or-nothing writes across the whole patch.
 
+## What a run is judged on
+
+Each run of the CLI is compared on three things only: the exit code, everything written to standard output, and
+every file in the tree afterwards, path by path and byte by byte. Standard error is never compared. A patch that
+fails in part writes nothing at all: every failure is reported, one line per failed edit in the patch's order, and
+the tree is left exactly as it was found.
+
 ## Files
 
 - `main.ts` — the CLI
